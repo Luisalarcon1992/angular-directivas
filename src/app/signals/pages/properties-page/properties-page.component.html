@@ -1,0 +1,16 @@
+<h1>Mutaciones</h1>
+<hr>
+
+<div class="row">
+  <div class="col-6">
+    <input #txtEmail (input)="onFieldUpdated('email', txtEmail.value)" type="text" class="fomr-control mb-2 "
+      [value]="user().email">
+    <input #firstName (input)="onFieldUpdated('first_name', firstName.value)" type="text" class="fomr-control mb-2"
+      [value]="user().first_name">
+    <input #txtLastName (input)="onFieldUpdated('last_name', txtLastName.value)" type="text" class="fomr-control mb-2"
+      [value]="user().last_name">
+  </div>
+  <div class="col-6">
+    <pre>{{ user() | json }}</pre>
+  </div>
+</div>

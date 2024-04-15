@@ -35,18 +35,26 @@ export class CustomLabelDirective {
 
     const errors = Object.keys(this._errors);
 
-    if (errors.includes('minlength') && this._errors?.["minlength"]?.requiredLength >= 3) {
+    if (errors.includes('required')) {
 
-      console.log(this._errors?.["minlength"]?.requiredLength)
-      this.htmlElement.nativeElement.innerText = 'No cumple el mínimo de caracteres';
+        this.htmlElement.nativeElement.innerText = 'Campo requerido';
+        return;
+    }
+
+    if (errors.includes('minlength')) {
+      const min = this._errors!['minlength']["requiredLength"];
+      const current = this._errors!['minlength']["actualLength"];
+
+      this.htmlElement.nativeElement.innerText = `El campo debe tener al menos ${min} caracteres, actualmente tiene ${current} caracteres`
+
       return;
 
     }
 
-    console.log({errors})
-
-
-
+    if ( errors.includes('email')) {
+      this.htmlElement.nativeElement.innerText = 'El email no es válido';
+      return;
+    }
   }
 
   setStyle() {
